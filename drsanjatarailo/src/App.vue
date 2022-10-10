@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrapper">
-    <MobileNav></MobileNav>
-    <router-view class="page"/>
+    <MobileNav :currentPage="currentPage"></MobileNav>
+    <router-view class="page" @currentPage="handleCurrentPage"/>
     <Footer></Footer>
   </div>  
 </template>
@@ -14,6 +14,16 @@ export default {
   components:{
     MobileNav,
     Footer
+  },
+  data:function(){
+    return{
+      currentPage:null
+    }
+  },
+  methods:{
+    handleCurrentPage(page){
+      this.currentPage=page
+    }
   }
 }
 </script>
@@ -31,5 +41,25 @@ body{
 }
 .page{
   margin-top: 88px;
+}
+::-webkit-scrollbar-track{
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb{
+	background-color: #2c3e50;	
+	background-image: -webkit-linear-gradient(45deg,
+	                                          rgba(255, 255, 255, .2) 25%,
+											  transparent 25%,
+											  transparent 50%,
+											  rgba(255, 255, 255, .2) 50%,
+											  rgba(255, 255, 255, .2) 75%,
+											  transparent 75%,
+											  transparent)
 }
 </style>

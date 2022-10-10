@@ -1,12 +1,13 @@
 <template>
   <div class="mobile-nav-wrapper">
     <header class="header">
-        <div class="mobile-logo-wrapper">
+        <div class="mobile-logo-wrapper" @click="sendToHomePage">
             <img src="../assets/logo-negative.svg" alt="logo">
             <div class="slogan-wrapper">
-                <h2 class="title-h2">Dr Sanja Tarailo</h2>
+                <h1 class="title-h1">Dr Sanja Tarailo</h1>
             </div>
         </div>
+        <div class="current-page-wrapper"><h3 class="current-page">{{currentPage}}</h3></div>
         <div class="mobile-icon-wrapper" @click="toggleMobileNavList">
             <font-awesome-icon icon="fa-regular fa-chart-bar"/>
         </div>
@@ -15,8 +16,8 @@
         <nav class="mobile-nav-list" v-show="mobileNavStatus">
             <div class="link-wrapper"><router-link class="link" to="/" @click="closeMobileNavList">Pocetna</router-link></div>
             <div class="link-wrapper"><router-link class="link" to="/about" @click="closeMobileNavList">Usluge</router-link></div>
-            <div class="link-wrapper"><router-link class="link" to="/about" @click="closeMobileNavList">Galerija</router-link></div>
-            <div class="link-wrapper"><router-link class="link" to="/about" @click="closeMobileNavList">Kontakt</router-link></div>
+            <div class="link-wrapper"><router-link class="link" to="/gallery" @click="closeMobileNavList">Galerija</router-link></div>
+            <div class="link-wrapper"><router-link class="link" to="/contact" @click="closeMobileNavList">Kontakt</router-link></div>
         </nav>
     </transition>
   </div>
@@ -24,6 +25,7 @@
 
 <script>
 export default {
+    props:["currentPage"],
     data:function(){
         return{
             mobileNavStatus:false
@@ -35,6 +37,9 @@ export default {
         },
         closeMobileNavList(){
             this.mobileNavStatus=false
+        },
+        sendToHomePage(){
+            this.$router.push({name:"home"})
         }
     }
 }
@@ -51,6 +56,7 @@ export default {
     width: 100%;
     z-index: 1;
     top: 0;
+    box-shadow: 0 4px 6px rgb(32 33 36 / 28%);
 }
 .mobile-logo-wrapper{
     position: relative;
@@ -61,6 +67,13 @@ export default {
 .mobile-logo-wrapper img{
     width: 40px;
     height: 2.5rem;
+}
+.current-page-wrapper{
+    height: 50px;
+}
+.current-page{
+    margin: 0;
+    font-size: 1.8rem;
 }
 .slogan-wrapper{
     width: 205px;
@@ -78,8 +91,9 @@ export default {
     background-color: #2c3e50;
     color: white;
 }
-.slogan-wrapper .title-h2{
+.slogan-wrapper .title-h1{
     margin: 0;
+    font-size: 1.5rem;
 }
 .mobile-brand-icons-wrapper{
     flex-basis: 15%;

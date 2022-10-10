@@ -8,20 +8,14 @@
         <p><a class="phone" href="tel:+1239012930123">90812038901283</a></p>
     </div>
     <div class="footer-icons-wrapper">
-        <font-awesome-icon class="icon" icon="fa-brands fa-facebook" />
-        <font-awesome-icon class="icon" icon="fa-brands fa-instagram" />
+        <a class="social-network-icon" href="https://www.facebook.com/profile.php?id=100007107225818" target="_blank"><font-awesome-icon class="icon" icon="fa-brands fa-facebook" /></a>
+        <a href="https://www.instagram.com/drsanjatarailo/" target="_blank" class="social-network-icon"> <font-awesome-icon class="icon" icon="fa-brands fa-instagram" /></a>
     </div>
     <div class="footer-copyright-wrapper">
         <p>Copyright &copy; Dr Sanja Tarailo | 2022</p>
     </div>
   </div>
 </template>
-
-<script>
-export default {
-
-}
-</script>
 
 <style>
 .footer{
@@ -60,6 +54,12 @@ export default {
 }
 .footer-icons-wrapper .icon:hover{
     transform: scale(1.5)
+}
+.social-network-icon:link,
+.social-network-icon:visited,
+.social-network-icon:hover,
+.social-network-icon:active{
+    color: #2c3e50;
 }
 @media screen and (min-width: 768px) {
     .footer-contact-wrapper{

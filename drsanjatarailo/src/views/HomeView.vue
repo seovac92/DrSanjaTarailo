@@ -3,12 +3,12 @@
     <main>
       <div class="hero">
         <div class="hover-hero"></div>
-        <h1 class="title"><span :class="[smileNegative?'smile-negative':'','smile']" @mouseenter="addNegativeClassToSmile" @mouseleave="removeNegatiteClassFromSmile">Savrsen osmeh</span><br> <span :class="[lipsNegative?'lips-negative':'','lips']">Neodoljive usne</span></h1>
+        <h2 class="title"><span :class="[smileNegative?'smile-negative':'','smile']" @mouseenter="addNegativeClassToSmile" @mouseleave="removeNegatiteClassFromSmile">Savrsen osmeh</span><br> <span :class="[lipsNegative?'lips-negative':'','lips']">Neodoljive usne</span></h2>
       </div>
       <article class="main-content-wrapper">
         <div class="main-content">
-          <h2>Usne & zubi</h2>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus ipsam veniam facere eveniet enim, sunt, natus, vitae voluptatum fugit quod fugiat? Id, atque? Consequatur provident officiis asperiores, ipsam aliquid expedita tempore corrupti perspiciatis libero rerum eligendi officia sunt facilis corporis deleniti temporibus voluptates praesentium nulla a. Officia hic fuga error! Qui similique laudantium ipsum vero odit quisquam minus dolore maxime? Iusto quas iste consequatur cum recusandae sint quidem quam similique doloremque soluta reiciendis omnis</p>
+          <h2>Osmeh & usne</h2>
+          <p><q>Neizostavni detalji za one koji drže do sebe, dovoljno govore o osobi i njenom psihofizičkom stanju bez i jedne izgovorene reči. Oni ne stare, lako se pamte i postaju nezaboravni. Neprolazne vrednosti po kojima se prepoznajemo.</q></p>
         </div>
       </article>
     </main>
@@ -49,15 +49,29 @@ export default {
     removeNegatiteClassFromSmile(){
       this.smileNegative=false
       this.lipsNegative=true
+    },
+    checkCurrentPage(){
+      this.$emit("currentPage",this.$route.meta.name)
+    },
+    goToTop(){
+      window.scroll({
+        top: 0
+      })
     }
+  },
+  mounted(){
+    this.goToTop()
+    this.checkCurrentPage()
   }
 }
 </script>
 <style>
+.home .hero{
+  background-image: url("../assets/hero-homeview-croped.jpg");
+}
 .hero{
   position: relative;
   height: 500px;
-  background-image: url("../assets/hero-homeview-croped.jpg");
   background-position: center center;
   background-size: cover;
 }
@@ -70,13 +84,13 @@ export default {
   position: absolute;
   bottom: 0;
   left: 15%;
+  font-size: 1.8rem;
 }
 .smile,
 .lips{
   display: inline-block;
   width: 265px;
   padding: 10px;
-  cursor: pointer;
 }
 .smile,
 .lips{
@@ -114,6 +128,11 @@ export default {
   width: 70%;
   margin: 0 auto;
   text-align: left;
+  padding: 15px;
+}
+.home .dentist-wrapper{
+  background-color: white;
+  color: black;
 }
 .bio-wrapper{
   display: flex;
