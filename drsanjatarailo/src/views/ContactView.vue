@@ -33,14 +33,6 @@ export default{
             window.scroll({
             top: 0
             })
-        },
-        submit(){
-           if(this.name.length===0 || this.email.length===0 || this.text.length===0){
-            return
-           }
-           this.name=""
-           this.email=""
-           this.text="" 
         }
     },
     mounted(){

@@ -145,6 +145,9 @@ export default {
   height: 200px;
   border-radius: 50%;
   border: 2px solid #eee;
+  background-image: url("../assets/gallery/slika8.jpg");
+  background-position: center center;
+  background-size: cover;
 }
 @media screen and (min-width: 992px) {
   .main-content{

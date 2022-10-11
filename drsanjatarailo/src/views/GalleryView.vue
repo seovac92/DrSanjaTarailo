@@ -1,21 +1,25 @@
 <template>
   <div class="gallery">
-    <main>
+    <main>  
     <div class="picture-wrapper">
         <img class="picture" :src="require(`../assets/gallery/${pictures[activePicture]}`)" alt="slika">
         <font-awesome-icon class="arrow-left" icon="fa-regular fa-circle-left" @click="previousPicture"/>
         <font-awesome-icon class="arrow-right" icon="fa-regular fa-circle-right" @click="nextPicture"/>
     </div>
     <div class="pictures-wrapper">
-        <div v-for="(picture,index) in pictures" :key="index">
+        <transition-group appear @before-enter="beforeEnter" @enter="enter">
+        <div v-for="(picture,index) in pictures" :key="index" :data-index="index">
             <img :src="require(`../assets/gallery/${picture}`)" @click="changeActivePicture(index)" :class="{active:index===indexOfActivePicture?true:false}">
         </div>
+        </transition-group>
     </div>
     </main>
   </div>
 </template>
 
 <script>
+import gsap from 'gsap'
+
 export default {
     data:function(){
         return{
@@ -71,6 +75,19 @@ export default {
                     this.previousPicture()
                     break;
             }
+        },
+        beforeEnter(el){
+            el.style.opacity=0
+            el.style.transform= "translateY(100px)"
+        },
+        enter(el,done){
+            gsap.to(el,{
+                opacity:1,
+                y:0,
+                duration:0.8,
+                onComplete:done,
+                delay:el.dataset.index * 0.2
+            })
         }
     },
     mounted(){
